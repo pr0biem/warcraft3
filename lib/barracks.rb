@@ -24,4 +24,15 @@ class Barracks
     Footman.new
   end
 
+  def train_peasant
+    return nil if can_train_peasant? == false
+    self.gold -= 90
+    self.food -= 5
+    Peasant.new
+  end
+
+  def can_train_peasant?
+    self.food >= 5 && self.gold >= 90
+  end
+
 end

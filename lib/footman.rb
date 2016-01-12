@@ -1,7 +1,7 @@
 # http://classic.battle.net/war3/human/units/footman.shtml
 
 class Footman < Unit
-
+  attr_accessor :hp, :ap
   def initialize
     @hp = 60
     @ap = 10
@@ -9,12 +9,11 @@ class Footman < Unit
     # Also also give code outside this class access to these variables (via attr_reader, attr_writer or attr_accessor)
   end
 
-  def health_points
-    @hp
+  def attack!(enemy)
+    enemy.damage(ap)
   end
 
-  def attack_power
-    @ap
+  def damage(ap)
+    self.hp -= ap
   end
-
 end
