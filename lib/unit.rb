@@ -12,7 +12,16 @@ class Unit
   end
 
   def attack!(enemy)
-    enemy.damage(attack_power)
+    return nil if self.dead?
+    return nil if enemy.dead?
+    if enemy.is_a? Barracks
+      enemy.damage((attack_power.to_f / 2).ceil)
+    else 
+      enemy.damage(attack_power)
+    end
   end
 
+  def dead?
+    self.health_points <= 0
+  end
 end
